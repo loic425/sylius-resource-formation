@@ -61,3 +61,7 @@ src: ./pages/06_providers.md
 ---
 src: ./pages/07_processors.md
 ---
+
+---
+src: ./pages/08_responders.md
+---
