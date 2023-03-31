@@ -45,3 +45,7 @@ src: ./pages/01_create_resource.md
 ---
 src: ./pages/02_configure_your_resource.md
 ---
+
+---
+src: ./pages/03_configure_your_operations.md
+---
