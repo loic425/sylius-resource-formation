@@ -7,6 +7,8 @@ $ bin/console make:entity 'App\Entity\Book'
 ```
 
 ---
+transition: fade
+---
 
 # Configure the BookRepository
 
@@ -38,6 +40,8 @@ class BookRepository extends ServiceEntityRepository
 ---
 
 # Configure the BookRepository
+
+The command also generates a Doctrine repository class.
 
 ```php {all|14|14,9|16|16,8}
 <?php
