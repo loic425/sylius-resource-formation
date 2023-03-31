@@ -49,3 +49,7 @@ src: ./pages/02_configure_your_resource.md
 ---
 src: ./pages/03_configure_your_operations.md
 ---
+
+---
+src: ./pages/04_redirect.md
+---
