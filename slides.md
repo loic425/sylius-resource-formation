@@ -53,3 +53,7 @@ src: ./pages/03_configure_your_operations.md
 ---
 src: ./pages/04_redirect.md
 ---
+
+---
+src: ./pages/06_providers.md
+---
