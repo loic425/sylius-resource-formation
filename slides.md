@@ -57,3 +57,7 @@ src: ./pages/04_redirect.md
 ---
 src: ./pages/06_providers.md
 ---
+
+---
+src: ./pages/07_processors.md
+---
