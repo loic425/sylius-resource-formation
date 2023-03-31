@@ -37,3 +37,13 @@ avec Sylius & Monofony
 <div align="center">
 <img class="w-75" src="https://raw.githubusercontent.com/Monofony/Monofony/0.x/docs/_images/doc_logo.png">
 </div>
+
+---
+src: ./pages/01_create_resource.md
+---
+
+[//]: # (---)
+
+[//]: # (src: ./pages/02_configure_your_resource.md)
+
+[//]: # (---)
