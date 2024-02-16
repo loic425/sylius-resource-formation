@@ -71,11 +71,12 @@ $ bin/console sylius:debug:resource 'App\Entity\book'
 | driver             | doctrine/orm                                               |
 | classes.model      | App\Entity\Book                                            |
 | classes.controller | Sylius\Bundle\ResourceBundle\Controller\ResourceController |
-| classes.factory    | Sylius\Component\Resource\Factory\Factory                  |
+| classes.factory    | Sylius\Resource\Factory\Factory                            |
 | classes.form       | Sylius\Bundle\ResourceBundle\Form\Type\DefaultResourceType |
 +--------------------+------------------------------------------------------------+
 ```
 
-By default, it will have the `app.book` alias in Sylius resource which is a concatenation of the application name and the resource name `{application}.{name}`.
+By default, it will have the `app.book` alias in Sylius resource which is a concatenation of the application name and
+the resource name `{application}.{name}`.
 
 </v-clicks>

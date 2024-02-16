@@ -66,6 +66,83 @@ On your Twig template, these variables are available
 
 ---
 
+```php
+#[\Attribute(\Attribute::TARGET_CLASS | \Attribute::IS_REPEATABLE)]
+final class Index extends HttpOperation implements CollectionOperationInterface, GridAwareOperationInterface
+{
+    public function __construct(
+        ?array $methods = null,
+        ?string $path = null,
+        ?string $routePrefix = null,
+        ?string $template = null,
+        ?string $shortName = null,
+        ?string $name = null,
+        string|callable|null $provider = null,
+        string|callable|null $processor = null,
+        string|callable|null $responder = null,
+        string|callable|null $repository = null,
+        ?string $repositoryMethod = null,
+        ?array $repositoryArguments = null,
+        ?bool $read = null,
+        ?bool $write = null,
+        ?bool $validate = null,
+        ?bool $deserialize = null,
+        ?bool $serialize = null,
+        // [...]
+    ) {}
+```
+
+---
+
+```php
+#[\Attribute(\Attribute::TARGET_CLASS | \Attribute::IS_REPEATABLE)]
+final class Index extends HttpOperation implements CollectionOperationInterface, GridAwareOperationInterface
+{
+    public function __construct(
+        // [...]
+        ?string $formType = null,
+        ?array $formOptions = null,
+        ?string $eventShortName = null,
+        ?array $validationContext = null,
+        string|callable|null $twigContextFactory = null,
+        ?string $redirectToRoute = null,
+        ?array $vars = null,
+        private ?string $grid = null,
+    ) {}
+```
+
+---
+
+```php
+final class ResourceMetadata
+{
+    private ?Operations $operations;
+
+    public function __construct(
+        private ?string $alias = null,
+        private ?string $section = null,
+        private ?string $formType = null,
+        private ?string $templatesDir = null,
+        private ?string $routePrefix = null,
+        private ?string $name = null,
+        private ?string $pluralName = null,
+        private ?string $applicationName = null,
+        private ?string $identifier = null,
+        protected ?array $normalizationContext = null,
+        protected ?array $denormalizationContext = null,
+        protected ?array $validationContext = null,
+        private ?string $class = null,
+        private string|false|null $driver = null,
+        private ?array $vars = null,
+        ?array $operations = null,
+    ) {
+        $this->operations = null === $operations ? null : new Operations($operations);
+    }
+}
+```
+
+---
+
 # Use a grid for your index operation
 
 <v-clicks>
