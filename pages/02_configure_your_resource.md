@@ -11,7 +11,7 @@ namespace App\Entity;
 
 use App\Repository\BookRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Model\ResourceInterface;
 
 #[ORM\Entity(repositoryClass: BookRepository::class)]
 class Book implements ResourceInterface
@@ -32,17 +32,17 @@ This one is already generated 🎉
 
 ---
 
-# Use the Resource attribute
+# Use the AsResource attribute
 
-PHP attribute ```#[Resource]``` configures your entity as a Sylius resource.
+PHP attribute ```#[AsResource]``` configures your entity as a Sylius resource.
 
 ```php {all|9|9,5}
 namespace App\Entity;
 
 use App\Repository\BookRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Sylius\Component\Resource\Metadata\Resource;
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Metadata\AsResource;
+use Sylius\Resource\Model\ResourceInterface;
 
 #[ORM\Entity(repositoryClass: BookRepository::class)]
 #[Resource]

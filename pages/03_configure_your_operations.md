@@ -18,11 +18,11 @@ There are some basic CRUD operations and more.
 ```php {all|8|8,3}
 namespace App\Entity;
 
-use Sylius\Component\Resource\Metadata\Index;
-use Sylius\Component\Resource\Metadata\Resource;
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Metadata\Index;
+use Sylius\Resource\Metadata\AsResource;
+use Sylius\Resource\Model\ResourceInterface;
 
-#[Resource]
+#[AsResource]
 #[Index]
 class Book implements ResourceInterface
 {
@@ -40,10 +40,9 @@ class Book implements ResourceInterface
 
 It will configure this route for your `index` operation.
 
-| Name                  | Method          | Path    |
-|-----------------------|-----------------|---------|
-| app_book_index        | GET             | /books  |
-
+| Name           | Method | Path   |
+|----------------|--------|--------|
+| app_book_index | GET    | /books |
 
 </v-clicks>
 
@@ -55,12 +54,13 @@ It will configure this route for your `index` operation.
 
 On your Twig template, these variables are available
 
-| Name      | Type                                     |
-|-----------|------------------------------------------|
-| resources | Pagerfanta\Pagerfanta                    |
-| books     | Pagerfanta\Pagerfanta                    |
-| operation | Sylius\Component\Resource\Metadata\Index |
-| app       | Symfony\Bridge\Twig\AppVariable          |
+| Name              | Type                                      |
+|-------------------|-------------------------------------------|
+| resources         | Pagerfanta\Pagerfanta                     |
+| books             | Pagerfanta\Pagerfanta                     |
+| operation         | Sylius\Resource\Metadata\Index            |
+| resource_metadata | Sylius\Resource\Metadata\ResourceMetadata |
+| app               | Symfony\Bridge\Twig\AppVariable           |
 
 </v-clicks>
 
@@ -70,17 +70,18 @@ On your Twig template, these variables are available
 
 <v-clicks>
 
-To use a grid for you operation, you need to install the [Sylius grid package](https://github.com/Sylius/SyliusGridBundle/)
+To use a grid for you operation, you need to install
+the [Sylius grid package](https://github.com/Sylius/SyliusGridBundle/)
 
 ```php {all|9-10|9-10,3|11-12|11-12}
 namespace App\Entity;
 
 use App\Grid\BookGrid;
-use Sylius\Component\Resource\Metadata\Index;
-use Sylius\Component\Resource\Metadata\Resource;
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Metadata\Index;
+use Sylius\Resource\Metadata\AsResource;
+use Sylius\Resource\Model\ResourceInterface;
 
-#[Resource]
+#[AsResource]
 // You can use either the FQCN of your grid
 #[Index(grid: BookGrid::class)]
 // Or you can use the grid name
@@ -101,12 +102,13 @@ class Book implements ResourceInterface
 
 On your Twig template, these variables are available
 
-| Name      | Type                                                    |
-|-----------|---------------------------------------------------------|
-| resources | Sylius\Bundle\ResourceBundle\Grid\View\ResourceGridView |
-| books     | Sylius\Bundle\ResourceBundle\Grid\View\ResourceGridView |
-| operation | Sylius\Component\Resource\Metadata\Index                |
-| app       | Symfony\Bridge\Twig\AppVariable                         |
+| Name              | Type                                                    |
+|-------------------|---------------------------------------------------------|
+| resources         | Sylius\Bundle\ResourceBundle\Grid\View\ResourceGridView |
+| books             | Sylius\Bundle\ResourceBundle\Grid\View\ResourceGridView |
+| operation         | Sylius\Resource\Metadata\Index                          |
+| resource_metadata | Sylius\Resource\Metadata\ResourceMetadata               |
+| app               | Symfony\Bridge\Twig\AppVariable                         |
 
 The iterator for your books will be available as `books.data` or `resources.data`.
 
@@ -123,11 +125,11 @@ The iterator for your books will be available as `books.data` or `resources.data
 ```php {all|8|8,3}
 namespace App\Entity;
 
-use Sylius\Component\Resource\Metadata\Create;
-use Sylius\Component\Resource\Metadata\Resource;
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Metadata\Create;
+use Sylius\Resource\Metadata\AsResource;
+use Sylius\Resource\Model\ResourceInterface;
 
-#[Resource]
+#[AsResource]
 #[Create]
 class Book implements ResourceInterface
 {
@@ -153,13 +155,14 @@ It will configure this route for your `create` operation.
 
 On your Twig template, these variables are available
 
-| Name      | Type                                      |
-|-----------|-------------------------------------------|
-| form      | App\Form\BookType                         |
-| resource  | App\Entity\Book                           |
-| book      | App\Entity\Book                           |
-| operation | Sylius\Component\Resource\Metadata\Create |
-| app       | Symfony\Bridge\Twig\AppVariable           |
+| Name              | Type                                      |
+|-------------------|-------------------------------------------|
+| form              | App\Form\BookType                         |
+| resource          | App\Entity\Book                           |
+| book              | App\Entity\Book                           |
+| operation         | Sylius\Resource\Metadata\Create           |
+| resource_metadata | Sylius\Resource\Metadata\ResourceMetadata |
+| app               | Symfony\Bridge\Twig\AppVariable           |
 
 ---
 
@@ -170,11 +173,11 @@ On your Twig template, these variables are available
 ```php {all|8|8,3}
 namespace App\Entity;
 
-use Sylius\Component\Resource\Metadata\Update;
-use Sylius\Component\Resource\Metadata\Resource;
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Metadata\Update;
+use Sylius\Resource\Metadata\AsResource;
+use Sylius\Resource\Model\ResourceInterface;
 
-#[Resource]
+#[AsResource]
 #[Update]
 class Book implements ResourceInterface
 {
@@ -198,13 +201,14 @@ It will configure this route for your `update` operation.
 
 On your Twig template, these variables are available
 
-| Name      | Type                                      |
-|-----------|-------------------------------------------|
-| form      | App\Form\BookType                         |
-| resource  | App\Entity\Book                           |
-| book      | App\Entity\Book                           |
-| operation | Sylius\Component\Resource\Metadata\Update |
-| app       | Symfony\Bridge\Twig\AppVariable           |
+| Name              | Type                                      |
+|-------------------|-------------------------------------------|
+| form              | App\Form\BookType                         |
+| resource          | App\Entity\Book                           |
+| book              | App\Entity\Book                           |
+| operation         | Sylius\Resource\Metadata\Update           |
+| resource_metadata | Sylius\Resource\Metadata\ResourceMetadata |
+| app               | Symfony\Bridge\Twig\AppVariable           |
 
 ---
 
@@ -215,11 +219,11 @@ On your Twig template, these variables are available
 ```php {all|8|8,3}
 namespace App\Entity;
 
-use Sylius\Component\Resource\Metadata\Delete;
-use Sylius\Component\Resource\Metadata\Resource;
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Metadata\Delete;
+use Sylius\Resource\Metadata\AsResource;
+use Sylius\Resource\Model\ResourceInterface;
 
-#[Resource]
+#[AsResource]
 #[Delete]
 class Book implements ResourceInterface
 {
@@ -246,11 +250,11 @@ It will configure this route for your `delete` operation.
 ```php {all|8|8,3}
 namespace App\Entity;
 
-use Sylius\Component\Resource\Metadata\BulkDelete;
-use Sylius\Component\Resource\Metadata\Resource;
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Metadata\BulkDelete;
+use Sylius\Resource\Metadata\AsResource;
+use Sylius\Resource\Model\ResourceInterface;
 
-#[Resource]
+#[AsResource]
 #[BulkDelete]
 class Book implements ResourceInterface
 {
@@ -277,11 +281,11 @@ It will configure this route for your `bulk_delete` operation.
 ```php {all|8|8,3}
 namespace App\Entity;
 
-use Sylius\Component\Resource\Metadata\Resource;
-use Sylius\Component\Resource\Metadata\Show;
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Metadata\AsResource;
+use Sylius\Resource\Metadata\Show;
+use Sylius\Resource\Model\ResourceInterface;
 
-#[Resource]
+#[AsResource]
 #[Show]
 class Book implements ResourceInterface
 {
@@ -295,9 +299,9 @@ class Book implements ResourceInterface
 
 It will configure this route for your `show` operation.
 
-| Name            | Method | Path        |
-|-----------------|--------|-------------|
-| app_book_show   | GET    | /books/{id} |    
+| Name          | Method | Path        |
+|---------------|--------|-------------|
+| app_book_show | GET    | /books/{id} |    
 
 ---
 
@@ -305,17 +309,17 @@ It will configure this route for your `show` operation.
 
 On your Twig template, these variables are available
 
-| Name      | Type                                    |
-|-----------|-----------------------------------------|
-| resource  | App\Entity\Book                         |
-| book      | App\Entity\Book                         |
-| operation | Sylius\Component\Resource\Metadata\Show |
-| app       | Symfony\Bridge\Twig\AppVariable         |
+| Name              | Type                                      |
+|-------------------|-------------------------------------------|
+| resource          | App\Entity\Book                           |
+| book              | App\Entity\Book                           |
+| operation         | Sylius\Resource\Metadata\Show             |
+| resource_metadata | Sylius\Resource\Metadata\ResourceMetadata |
+| app               | Symfony\Bridge\Twig\AppVariable           |
 
 ---
 
 # State machine operation
-
 
 `State machine` operation allows to apply a transition to an item of your resource.
 
@@ -324,12 +328,12 @@ As an example, we add a `publish` operation to our book resource.
 ```php {all|8|8,3}
 namespace App\Entity;
 
-use Sylius\Component\Resource\Metadata\ApplyStateMachineTransition;
-use Sylius\Component\Resource\Metadata\Resource;
-use Sylius\Component\Resource\Metadata\Show;
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Metadata\ApplyStateMachineTransition;
+use Sylius\Resource\Metadata\AsResource;
+use Sylius\Resource\Metadata\Show;
+use Sylius\Resource\Model\ResourceInterface;
 
-#[Resource]
+#[AsResource]
 #[ApplyStateMachineTransition(stateMachineTransition: 'publish')]
 class Book implements ResourceInterface
 {
@@ -343,9 +347,9 @@ class Book implements ResourceInterface
 
 It will configure this route for your `apply_state_machine_transition` operation.
 
-| Name              | Method | Path                |
-|-------------------|--------|---------------------|
-| app_book_publish  | GET    | /books/{id}/publish |    
+| Name             | Method | Path                |
+|------------------|--------|---------------------|
+| app_book_publish | GET    | /books/{id}/publish |    
 
 ---
 
@@ -360,14 +364,14 @@ As an example, we defines `index`, `create`, `update` and `show` operations to o
 ```php {all|10}
 namespace App\Entity;
 
-use Sylius\Component\Resource\Metadata\Create;
-use Sylius\Component\Resource\Metadata\Index;
-use Sylius\Component\Resource\Metadata\Resource;
-use Sylius\Component\Resource\Metadata\Show;
-use Sylius\Component\Resource\Metadata\Update;
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Metadata\Create;
+use Sylius\Resource\Metadata\Index;
+use Sylius\Resource\Metadata\Resource;
+use Sylius\Resource\Metadata\Show;
+use Sylius\Resource\Metadata\Update;
+use Sylius\Resource\Model\ResourceInterface;
 
-#[Resource(templatesDir: 'book')]
+#[AsResource(templatesDir: 'book')]
 #[Index]
 #[Create]
 #[Update]
@@ -404,7 +408,7 @@ namespace App\Entity;
 
 // [...]
 
-#[Resource(routePrefix: 'admin')]
+#[AsResource(routePrefix: 'admin')]
 #[Index]
 #[Create]
 #[Update]
@@ -424,14 +428,14 @@ class Book implements ResourceInterface
 
 # Configure the routes' prefix
 
-| Name                   | Method          | Path                     |
-|------------------------|-----------------|--------------------------|
-| app_book_index         | GET             | /admin/books/            |
-| app_book_create        | GET, POST       | /admin/books/new         |                     
-| app_book_update        | GET, PUT, PATCH | /admin/books/{id}/edit   |        
-| app_book_delete        | DELETE          | /admin/books/{id}        |
-| app_book_bulk_delete   | DELETE          | /admin/books/bulk_delete |               
-| app_book_show          | GET             | /admin/books/{id}        |
+| Name                 | Method          | Path                     |
+|----------------------|-----------------|--------------------------|
+| app_book_index       | GET             | /admin/books/            |
+| app_book_create      | GET, POST       | /admin/books/new         |                     
+| app_book_update      | GET, PUT, PATCH | /admin/books/{id}/edit   |        
+| app_book_delete      | DELETE          | /admin/books/{id}        |
+| app_book_bulk_delete | DELETE          | /admin/books/bulk_delete |               
+| app_book_show        | GET             | /admin/books/{id}        |
 
 ---
 
@@ -444,14 +448,14 @@ namespace App\Entity;
 
 // [...]
 
-#[Resource(section: 'admin', routePrefix: 'admin')]
+#[AsResource(section: 'admin', routePrefix: 'admin')]
 #[Index]
 #[Create]
 #[Update]
 #[Delete]
 #[BulkDelete]
 
-#[Resource(section: 'shop')]
+#[AsResource(section: 'shop')]
 #[Index]
 #[Show]
 class Book implements ResourceInterface

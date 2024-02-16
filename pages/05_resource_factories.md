@@ -12,7 +12,7 @@ Resource factories are used on Create operations to instantiate your resource.
 
 <v-clicks>
 
-By default, a resource factory is defined to your resource `Sylius\Component\Resource\Factory\Factory`.
+By default, a resource factory is defined to your resource `Sylius\Resource\Factory\Factory`.
 
 It has a `createNew` method with no arguments.
 
@@ -30,7 +30,7 @@ declare(strict_types=1);
 namespace App\Factory;
 
 use App\Entity\Book;
-use Sylius\Component\Resource\Factory\FactoryInterface;
+use Sylius\Resource\Factory\FactoryInterface;
 
 final class BookFactory implements FactoryInterface
 {
@@ -52,7 +52,7 @@ final class BookFactory implements FactoryInterface
 # config/services.yaml
 services:
     App\Factory\BookFactory:
-        decorates: '@.inner'
+      decorates: 'app.factory.book'
 ```
 
 ---
@@ -97,11 +97,11 @@ declare(strict_types=1);
 
 namespace App\Entity\Book;
 
-use Sylius\Component\Resource\Metadata\Create;
-use Sylius\Component\Resource\Metadata\Resource;
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Metadata\Create;
+use Sylius\Resource\Metadata\AsResource;
+use Sylius\Resource\Model\ResourceInterface;
 
-#[Resource]
+#[AsResource]
 #[Create(
     path: 'authors/{authorId}/books',
     factoryMethod: 'createWithCreator',
@@ -171,11 +171,11 @@ declare(strict_types=1);
 
 namespace App\Entity\Book;
 
-use Sylius\Component\Resource\Metadata\Create;
-use Sylius\Component\Resource\Metadata\Resource;
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Metadata\Create;
+use Sylius\Resource\Metadata\AsResource;
+use Sylius\Resource\Model\ResourceInterface;
 
-#[Resource]
+#[AsResource]
 #[Create(
     path: 'authors/{authorId}/books',
     factoryMethod: 'createForAuthor',

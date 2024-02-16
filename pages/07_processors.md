@@ -16,12 +16,12 @@ When your resource is a Doctrine entity, there are default processors which are 
 
 As it uses the Doctrine repository configured on your resource, it will automatically flush data for you.
 
-| Operation   | Processor                                                        |
-|-------------|------------------------------------------------------------------|
-| create      | Sylius\Component\Resource\Doctrine\Common\State\PersistProcessor |
-| update      | Sylius\Component\Resource\Doctrine\Common\State\PersistProcessor |
-| delete      | Sylius\Component\Resource\Doctrine\Common\State\RemoveProcessor  |
-| bulk delete | Sylius\Component\Resource\Doctrine\Common\State\RemoveProcessor  |
+| Operation   | Processor                                              |
+|-------------|--------------------------------------------------------|
+| create      | Sylius\Resource\Doctrine\Common\State\PersistProcessor |
+| update      | Sylius\Resource\Doctrine\Common\State\PersistProcessor |
+| delete      | Sylius\Resource\Doctrine\Common\State\RemoveProcessor  |
+| bulk delete | Sylius\Resource\Doctrine\Common\State\RemoveProcessor  |
 
 </v-clicks>
 
@@ -31,7 +31,8 @@ As it uses the Doctrine repository configured on your resource, it will automati
 
 <v-clicks>
 
-Custom processors are useful to customize your logic to send an email, persist data to storage, add to queue and for an advanced usage such as an hexagonal architecture.
+Custom processors are useful to customize your logic to send an email, persist data to storage, add to queue and for an
+advanced usage such as an hexagonal architecture.
 
 </v-clicks>
 
@@ -49,8 +50,8 @@ As an example, send an email after customer registration
 namespace App\Sylius\State\Processor;
 
 use Sylius\Component\Customer\Model\CustomerInterface;
-use Sylius\Component\Resource\Doctrine\Common\State\PersistProcessor;
-use Sylius\Component\Resource\State\ProcessorInterface;
+use Sylius\Resource\Doctrine\Common\State\PersistProcessor;
+use Sylius\Resource\State\ProcessorInterface;
 
 final class CreateCustomerProcessor implements ProcessorInterface
 {
@@ -85,7 +86,7 @@ namespace App\Entity\Customer;
 
 use App\Sylius\State\Processor\CreateCustomerProcessor;
 
-#[Resource]
+#[AsResource]
 #[Create(processor: CreateCustomerProcessor::class)]
 final class BoardGameResource implements ResourceInterface
 ```
@@ -96,7 +97,8 @@ final class BoardGameResource implements ResourceInterface
 
 <v-clicks>
 
-As another example, let's configure a `DeleteBoardGameProcessor` on a `BoardGameResource` which is not a Doctrine entity.
+As another example, let's configure a `DeleteBoardGameProcessor` on a `BoardGameResource` which is not a Doctrine
+entity.
 
 </v-clicks>
 
@@ -134,7 +136,7 @@ final class DeleteBoardGameProcessor implements ProcessorInterface
 
 namespace App\BoardGameBlog\Infrastructure\Sylius\Resource;
 
-#[Resource(
+#[AsResource(
     alias: 'app.board_game',
     section: 'admin',
     formType: BoardGameType::class,

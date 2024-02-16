@@ -12,15 +12,16 @@ Responders respond data: transform data to a Symfony response, return a success 
 
 <v-clicks>
 
-When your operation is an instance of `Sylius\Component\Resource\Metadata\HttpOperation` two responders are configured by default.
+When your operation is an instance of `Sylius\Resource\Metadata\HttpOperation` two responders are configured
+by default.
 
 The responder will automatically choose the responder depending on the request format:
 
-| Request format | Responder                                                     |
-|----------------|---------------------------------------------------------------|
-| html           | Sylius\Component\Resource\Symfony\Request\State\TwigResponder |
-| json           | Sylius\Component\Resource\Symfony\Request\State\ApiResponder  |
-| xml            | Sylius\Component\Resource\Doctrine\Common\State\ApiResponder  |
+| Request format | Responder                                           |
+|----------------|-----------------------------------------------------|
+| html           | Sylius\Resource\Symfony\Request\State\TwigResponder |
+| json           | Sylius\Resource\Symfony\Request\State\ApiResponder  |
+| xml            | Sylius\Resource\Doctrine\Common\State\ApiResponder  |
 
 </v-clicks>
 
@@ -59,8 +60,8 @@ As an example, we add a `foo` variable to the Twig template with `bar` as value.
 namespace App\Twig\Context\Factory;
 
 use phpDocumentor\Reflection\Types\Context;
-use Sylius\Component\Resource\Metadata\Operation;
-use Sylius\Component\Resource\Twig\Context\Factory\ContextFactoryInterface;
+use Sylius\Resource\Metadata\Operation;
+use Sylius\Resource\Twig\Context\Factory\ContextFactoryInterface;
 
 final class ShowSubscriptionContextFactory implements ContextFactoryInterface
 {
@@ -88,11 +89,11 @@ final class ShowSubscriptionContextFactory implements ContextFactoryInterface
 
 namespace App\Entity;
 
-use Sylius\Component\Resource\Metadata\Resource;
-use Sylius\Component\Resource\Metadata\Show;
-use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Resource\Metadata\AsResource;
+use Sylius\Resource\Metadata\Show;
+use Sylius\Resource\Model\ResourceInterface;
 
-#[Resource]
+#[AsResource]
 #[Show(
     template: 'subscription/show.html.twig',
     twigContextFactory: ShowSubscriptionContextFactory::class,

@@ -12,7 +12,7 @@ Providers retrieve data from your persistence layer.
 
 <v-clicks>
 
-When your resource is a Doctrine entity, there's a default provider `Sylius\Component\Resource\Symfony\Request\State\Provider` which is already configured to your operations.
+When your resource is a Doctrine entity, there's a default provider `Sylius\Resource\Symfony\Request\State\Provider` which is already configured to your operations.
 
 As it uses the Doctrine repository configured on your resource, some default repository methods are used.
 
@@ -41,7 +41,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-#[Resource]
+#[AsResource]
 #[Show(repositoryMethod: 'findOneByEmail')]
 final class Customer implements ResourceInterface
 {
@@ -80,7 +80,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-#[Resource]
+#[AsResource]
 #[Show(repositoryMethod: 'findOneByEmail', repositoryArguments: ['email' => "request.attributes.get('email')"])]
 final class Customer implements ResourceInterface
 {
@@ -143,7 +143,7 @@ namespace App\BoardGameBlog\Infrastructure\Sylius\Resource;
 
 use App\BoardGameBlog\Infrastructure\Sylius\State\Provider\BoardGameItemProvider;
 
-#[Resource]
+#[AsResource]
 #[Show(provider: BoardGameItemProvider::class)]
 final class BoardGameResource implements ResourceInterface
 {
