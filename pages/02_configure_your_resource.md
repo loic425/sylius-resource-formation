@@ -45,7 +45,7 @@ use Sylius\Resource\Metadata\AsResource;
 use Sylius\Resource\Model\ResourceInterface;
 
 #[ORM\Entity(repositoryClass: BookRepository::class)]
-#[Resource]
+#[AsResource]
 class Book implements ResourceInterface
 {
 }
